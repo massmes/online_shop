@@ -2,7 +2,6 @@
 
 namespace Illuminate\Http\Client;
 
-use Closure;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
@@ -10,7 +9,6 @@ use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
 use GuzzleHttp\UriTemplate\UriTemplate;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Client\Events\ConnectionFailed;
@@ -132,7 +130,7 @@ class PendingRequest
     /**
      * The number of milliseconds to wait between retries.
      *
-     * @var Closure|int
+     * @var int
      */
     protected $retryDelay = 100;
 
@@ -217,13 +215,12 @@ class PendingRequest
      * Create a new HTTP Client instance.
      *
      * @param  \Illuminate\Http\Client\Factory|null  $factory
-     * @param  array  $middleware
      * @return void
      */
-    public function __construct(Factory $factory = null, $middleware = [])
+    public function __construct(Factory $factory = null)
     {
         $this->factory = $factory;
-        $this->middleware = new Collection($middleware);
+        $this->middleware = new Collection;
 
         $this->asJson();
 
@@ -261,7 +258,7 @@ class PendingRequest
      * @param  string  $contentType
      * @return $this
      */
-    public function withBody($content, $contentType = 'application/json')
+    public function withBody($content, $contentType)
     {
         $this->bodyFormat('body');
 
@@ -347,21 +344,6 @@ class PendingRequest
     }
 
     /**
-     * Set the given query parameters in the request URI.
-     *
-     * @param  array  $parameters
-     * @return $this
-     */
-    public function withQueryParameters(array $parameters)
-    {
-        return tap($this, function () use ($parameters) {
-            $this->options = array_merge_recursive($this->options, [
-                'query' => $parameters,
-            ]);
-        });
-    }
-
-    /**
      * Specify the request's content type.
      *
      * @param  string  $contentType
@@ -411,31 +393,6 @@ class PendingRequest
     }
 
     /**
-     * Add the given header to the request.
-     *
-     * @param  string  $name
-     * @param  mixed  $value
-     * @return $this
-     */
-    public function withHeader($name, $value)
-    {
-        return $this->withHeaders([$name => $value]);
-    }
-
-    /**
-     * Replace the given headers on the request.
-     *
-     * @param  array  $headers
-     * @return $this
-     */
-    public function replaceHeaders(array $headers)
-    {
-        $this->options['headers'] = array_merge($this->options['headers'] ?? [], $headers);
-
-        return $this;
-    }
-
-    /**
      * Specify the basic authentication username and password for the request.
      *
      * @param  string  $username
@@ -480,7 +437,7 @@ class PendingRequest
     /**
      * Specify the user agent for the request.
      *
-     * @param  string|bool  $userAgent
+     * @param  string  $userAgent
      * @return $this
      */
     public function withUserAgent($userAgent)
@@ -599,12 +556,12 @@ class PendingRequest
      * Specify the number of times the request should be attempted.
      *
      * @param  int  $times
-     * @param  Closure|int  $sleepMilliseconds
+     * @param  int  $sleepMilliseconds
      * @param  callable|null  $when
      * @param  bool  $throw
      * @return $this
      */
-    public function retry(int $times, Closure|int $sleepMilliseconds = 0, ?callable $when = null, bool $throw = true)
+    public function retry(int $times, int $sleepMilliseconds = 0, ?callable $when = null, bool $throw = true)
     {
         $this->tries = $times;
         $this->retryDelay = $sleepMilliseconds;
@@ -639,32 +596,6 @@ class PendingRequest
     public function withMiddleware(callable $middleware)
     {
         $this->middleware->push($middleware);
-
-        return $this;
-    }
-
-    /**
-     * Add new request middleware the client handler stack.
-     *
-     * @param  callable  $middleware
-     * @return $this
-     */
-    public function withRequestMiddleware(callable $middleware)
-    {
-        $this->middleware->push(Middleware::mapRequest($middleware));
-
-        return $this;
-    }
-
-    /**
-     * Add new response middleware the client handler stack.
-     *
-     * @param  callable  $middleware
-     * @return $this
-     */
-    public function withResponseMiddleware(callable $middleware)
-    {
-        $this->middleware->push(Middleware::mapResponse($middleware));
 
         return $this;
     }
@@ -1027,17 +958,11 @@ class PendingRequest
 
         $laravelData = $this->parseRequestData($method, $url, $options);
 
-        $onStats = function ($transferStats) {
-            if (($callback = ($this->options['on_stats'] ?? false)) instanceof Closure) {
-                $transferStats = $callback($transferStats) ?: $transferStats;
-            }
-
-            $this->transferStats = $transferStats;
-        };
-
         return $this->buildClient()->$clientMethod($method, $url, $this->mergeOptions([
             'laravel_data' => $laravelData,
-            'on_stats' => $onStats,
+            'on_stats' => function ($transferStats) {
+                $this->transferStats = $transferStats;
+            },
         ], $options));
     }
 
@@ -1155,12 +1080,12 @@ class PendingRequest
     {
         return tap($handlerStack, function ($stack) {
             $stack->push($this->buildBeforeSendingHandler());
+            $stack->push($this->buildRecorderHandler());
 
             $this->middleware->each(function ($middleware) use ($stack) {
                 $stack->push($middleware);
             });
 
-            $stack->push($this->buildRecorderHandler());
             $stack->push($this->buildStubHandler());
         });
     }

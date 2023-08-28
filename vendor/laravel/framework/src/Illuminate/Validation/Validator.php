@@ -296,24 +296,17 @@ class Validator implements ValidatorContract
     protected $exception = ValidationException::class;
 
     /**
-     * The custom callback to determine if an exponent is within allowed range.
-     *
-     * @var callable|null
-     */
-    protected $ensureExponentWithinAllowedRangeUsing;
-
-    /**
      * Create a new Validator instance.
      *
      * @param  \Illuminate\Contracts\Translation\Translator  $translator
      * @param  array  $data
      * @param  array  $rules
      * @param  array  $messages
-     * @param  array  $attributes
+     * @param  array  $customAttributes
      * @return void
      */
     public function __construct(Translator $translator, array $data, array $rules,
-                                array $messages = [], array $attributes = [])
+                                array $messages = [], array $customAttributes = [])
     {
         $this->dotPlaceholder = Str::random();
 
@@ -321,7 +314,7 @@ class Validator implements ValidatorContract
         $this->translator = $translator;
         $this->customMessages = $messages;
         $this->data = $this->parseData($data);
-        $this->customAttributes = $attributes;
+        $this->customAttributes = $customAttributes;
 
         $this->setRules($rules);
     }
@@ -390,19 +383,11 @@ class Validator implements ValidatorContract
     /**
      * Add an after validation callback.
      *
-     * @param  callable|array|string  $callback
+     * @param  callable|string  $callback
      * @return $this
      */
     public function after($callback)
     {
-        if (is_array($callback) && ! is_callable($callback)) {
-            foreach ($callback as $rule) {
-                $this->after(method_exists($rule, 'after') ? $rule->after(...) : $rule);
-            }
-
-            return $this;
-        }
-
         $this->after[] = fn () => $callback($this);
 
         return $this;
@@ -1102,18 +1087,6 @@ class Validator implements ValidatorContract
     }
 
     /**
-     * Set the value of a given attribute.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @return void
-     */
-    public function setValue($attribute, $value)
-    {
-        Arr::set($this->data, $attribute, $value);
-    }
-
-    /**
      * Get the validation rules.
      *
      * @return array
@@ -1385,12 +1358,12 @@ class Validator implements ValidatorContract
     /**
      * Add custom attributes to the validator.
      *
-     * @param  array  $attributes
+     * @param  array  $customAttributes
      * @return $this
      */
-    public function addCustomAttributes(array $attributes)
+    public function addCustomAttributes(array $customAttributes)
     {
-        $this->customAttributes = array_merge($this->customAttributes, $attributes);
+        $this->customAttributes = array_merge($this->customAttributes, $customAttributes);
 
         return $this;
     }
@@ -1494,19 +1467,6 @@ class Validator implements ValidatorContract
         }
 
         $this->exception = $exception;
-
-        return $this;
-    }
-
-    /**
-     * Ensure exponents are within range using the given callback.
-     *
-     * @param  callable(int $scale, string $attribute, mixed $value)  $callback
-     * @return $this
-     */
-    public function ensureExponentWithinAllowedRangeUsing($callback)
-    {
-        $this->ensureExponentWithinAllowedRangeUsing = $callback;
 
         return $this;
     }

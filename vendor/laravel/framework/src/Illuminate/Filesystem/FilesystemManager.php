@@ -86,7 +86,7 @@ class FilesystemManager implements FactoryContract
     /**
      * Get a default cloud filesystem instance.
      *
-     * @return \Illuminate\Contracts\Filesystem\Cloud
+     * @return \Illuminate\Contracts\Filesystem\Filesystem
      */
     public function cloud()
     {
@@ -284,7 +284,7 @@ class FilesystemManager implements FactoryContract
         }
 
         return $this->build(tap(
-            is_string($config['disk']) ? $this->getConfig($config['disk']) : $config['disk'],
+            $this->getConfig($config['disk']),
             fn (&$parent) => $parent['prefix'] = $config['prefix']
         ));
     }

@@ -61,43 +61,12 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
     /**
      * Determine if a given attribute exists in the attribute array.
      *
-     * @param  array|string  $key
+     * @param  string  $key
      * @return bool
      */
     public function has($key)
     {
-        $keys = is_array($key) ? $key : func_get_args();
-
-        foreach ($keys as $value) {
-            if (! array_key_exists($value, $this->attributes)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * Determine if any of the keys exist in the attribute array.
-     *
-     * @param  array|string  $key
-     * @return bool
-     */
-    public function hasAny($key)
-    {
-        if (! count($this->attributes)) {
-            return false;
-        }
-
-        $keys = is_array($key) ? $key : func_get_args();
-
-        foreach ($keys as $value) {
-            if ($this->has($value)) {
-                return true;
-            }
-        }
-
-        return false;
+        return array_key_exists($key, $this->attributes);
     }
 
     /**
@@ -108,7 +77,7 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
      */
     public function missing($key)
     {
-        return ! $this->has($key);
+        return ! $this->has($key, $this->attributes);
     }
 
     /**
@@ -470,8 +439,7 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
             }
 
             if ($value === true) {
-                // Exception for Alpine...
-                $value = $key === 'x-data' ? '' : $key;
+                $value = $key;
             }
 
             $string .= ' '.$key.'="'.str_replace('"', '\\"', trim($value)).'"';
