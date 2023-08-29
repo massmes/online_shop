@@ -2,15 +2,15 @@ window.$ = window.jQuery = require("jquery");
 require("bootstrap/dist/js/bootstrap.bundle");
 require("jquery.easing");
 require("chart.js");
-// require("sweetalert");
+require("sweetalert");
 require("bootstrap-select");
 require("bootstrap-select/dist/js/i18n/defaults-fa_IR");
 
-(function($) {
+(function ($) {
     "use strict"; // Start of use strict
 
     // Toggle the side navigation
-    $("#sidebarToggle, #sidebarToggleTop").on("click", function(e) {
+    $("#sidebarToggle, #sidebarToggleTop").on("click", function (e) {
         $("body").toggleClass("sidebar-toggled");
         $(".sidebar").toggleClass("toggled");
         if ($(".sidebar").hasClass("toggled")) {
@@ -19,7 +19,7 @@ require("bootstrap-select/dist/js/i18n/defaults-fa_IR");
     });
 
     // Close any open menu accordions when window is resized below 768px
-    $(window).resize(function() {
+    $(window).resize(function () {
         if ($(window).width() < 768) {
             $(".sidebar .collapse").collapse("hide");
         }
@@ -33,7 +33,7 @@ require("bootstrap-select/dist/js/i18n/defaults-fa_IR");
     });
 
     // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
-    $("body.fixed-nav .sidebar").on("mousewheel DOMMouseScroll wheel", function(
+    $("body.fixed-nav .sidebar").on("mousewheel DOMMouseScroll wheel", function (
         e
     ) {
         if ($(window).width() > 768) {
@@ -45,7 +45,7 @@ require("bootstrap-select/dist/js/i18n/defaults-fa_IR");
     });
 
     // Scroll to top button appear
-    $(document).on("scroll", function() {
+    $(document).on("scroll", function () {
         var scrollDistance = $(this).scrollTop();
         if (scrollDistance > 100) {
             $(".scroll-to-top").fadeIn();
@@ -55,7 +55,7 @@ require("bootstrap-select/dist/js/i18n/defaults-fa_IR");
     });
 
     // Smooth scrolling using jQuery easing
-    $(document).on("click", "a.scroll-to-top", function(e) {
+    $(document).on("click", "a.scroll-to-top", function (e) {
         var $anchor = $(this);
         $("html, body")
             .stop()

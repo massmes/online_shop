@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
+use Wavey\Sweetalert\Sweetalert;
+use Exception;
 
 class TagController extends Controller
 {
@@ -27,7 +28,6 @@ class TagController extends Controller
      */
     public function create()
     {
-
         return view('admin.tags.create');
     }
 
@@ -46,11 +46,10 @@ class TagController extends Controller
             $attribute = new Tag();
             $attribute->name = $request->input('name');
             $attribute->save();
-            Alert::success('با موفقیت اضافه شد');
+            Sweetalert::success('ثبت اطلاعات با موفقیت انجام شد');
             return redirect()->route('admin.tags.index');
-        } catch (\Exception $exception) {
-            Alert::success('با موفقیت اضافه نشد');
-
+        } catch (Exception $exception) {
+            Sweetalert::error('ثبت اطلاعات با خطا روبرو شد');
             return redirect()->back();
         }
 
@@ -90,10 +89,17 @@ class TagController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|min:2',
         ]);
-        $tag->update([
-            'name' => $request->name,
-        ]);
-        return redirect()->route('admin.tags.index');
+        try {
+            $tag->update([
+                'name' => $request->name,
+            ]);
+            Sweetalert::success('ویرایش اطلاعات با موفقیت انجام شد');
+            return redirect()->route('admin.tags.index');
+        } catch (Exception $exception) {
+            Sweetalert::error('ویرایش اطلاعات با خطا روبرو شد');
+            return redirect()->back();
+        }
+
     }
 
     /**

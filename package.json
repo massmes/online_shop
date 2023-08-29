@@ -27,6 +27,7 @@
         "jquery.easing": "^1.4.1",
         "sass": "^1.29.0",
         "sass-loader": "^13.3.2",
+        "sweetalert": "^2.1.2",
         "sweetalert2": "^11.7.27"
     }
 }

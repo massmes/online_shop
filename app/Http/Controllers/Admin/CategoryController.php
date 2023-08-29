@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {

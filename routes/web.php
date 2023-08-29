@@ -21,7 +21,6 @@ use RealRashid\SweetAlert\Facades\Alert;
 */
 
 Route::get('/admin-panel/dashboard', function () {
-    Alert::warning('Warning Title', 'Warning Message');
     return view('admin.dashboard');
 })->name('dashboard');
 

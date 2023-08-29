@@ -3,24 +3,26 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <title>Webprog.ir - @yield('title')</title>
+    <title>Webprog.ir - @yield('title')</title>
 
-  <!-- Custom styles for this template-->
-  <link href="{{ asset('/css/admin/admin.css') }}" rel="stylesheet">
-  @yield('style')
+    <!-- Custom styles for this template-->
+    <link href="{{ asset('/css/admin/admin.css') }}" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @yield('style')
 
 </head>
 
 <body id="page-top">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
     <!-- Sidebar -->
     @include('admin.sections.sidebar')
@@ -29,42 +31,41 @@
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
-      <!-- Main Content -->
-      <div id="content">
+        <!-- Main Content -->
+        <div id="content">
 
-        <!-- Topbar -->
-        @include('admin.sections.topbar')
-        <!-- End of Topbar -->
+            <!-- Topbar -->
+            @include('admin.sections.topbar')
+            <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
 
-          @yield('content')
+                @yield('content')
+
+            </div>
+            <!-- /.container-fluid -->
 
         </div>
-        <!-- /.container-fluid -->
+        <!-- End of Main Content -->
 
-      </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      @include('admin.sections.footer')
-      <!-- End of Footer -->
+        <!-- Footer -->
+        @include('admin.sections.footer')
+        <!-- End of Footer -->
 
     </div>
     <!-- End of Content Wrapper -->
 
-  </div>
-  <!-- End of Page Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
-  @include('admin.sections.scrollTop')
+<!-- Scroll to Top Button-->
+@include('admin.sections.scrollTop')
 
-  <!-- JavaScript-->
+<!-- JavaScript-->
 <script src="{{ asset('/js/admin/admin.js') }}"></script>
 
-@include('sweetalert::alert')
-
+@include('sweetalert::sweetalert')
 @yield('script')
 
 </body>

@@ -50,6 +50,7 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         array (
             'Whoops\\' => 7,
             'Webmozart\\Assert\\' => 17,
+            'Wavey\\Sweetalert\\' => 17,
         ),
         'T' => 
         array (
@@ -200,6 +201,10 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Wavey\\Sweetalert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/wavey/sweetalert/src',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -563,6 +568,7 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         'App\\Http\\Controllers\\Admin\\AttributeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AttributeController.php',
         'App\\Http\\Controllers\\Admin\\BrandController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BrandController.php',
         'App\\Http\\Controllers\\Admin\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CategoryController.php',
+        'App\\Http\\Controllers\\Admin\\TagController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TagController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -577,6 +583,7 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         'App\\Models\\Attribute' => __DIR__ . '/../..' . '/app/Models/Attribute.php',
         'App\\Models\\Brand' => __DIR__ . '/../..' . '/app/Models/Brand.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
+        'App\\Models\\Tag' => __DIR__ . '/../..' . '/app/Models/Tag.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -5898,6 +5905,13 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
+        'Wavey\\Sweetalert\\Console\\InstallCommand' => __DIR__ . '/..' . '/wavey/sweetalert/src/Console/InstallCommand.php',
+        'Wavey\\Sweetalert\\ConvertMessages' => __DIR__ . '/..' . '/wavey/sweetalert/src/ConvertMessages.php',
+        'Wavey\\Sweetalert\\LaravelSessionStore' => __DIR__ . '/..' . '/wavey/sweetalert/src/LaravelSessionStore.php',
+        'Wavey\\Sweetalert\\Notifier' => __DIR__ . '/..' . '/wavey/sweetalert/src/Notifier.php',
+        'Wavey\\Sweetalert\\SessionStore' => __DIR__ . '/..' . '/wavey/sweetalert/src/SessionStore.php',
+        'Wavey\\Sweetalert\\Sweetalert' => __DIR__ . '/..' . '/wavey/sweetalert/src/Sweetalert.php',
+        'Wavey\\Sweetalert\\SweetalertServiceProvider' => __DIR__ . '/..' . '/wavey/sweetalert/src/SweetalertServiceProvider.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Webmozart\\Assert\\InvalidArgumentException' => __DIR__ . '/..' . '/webmozart/assert/src/InvalidArgumentException.php',
         'Webmozart\\Assert\\Mixin' => __DIR__ . '/..' . '/webmozart/assert/src/Mixin.php',
