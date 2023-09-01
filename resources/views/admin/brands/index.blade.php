@@ -7,13 +7,16 @@
 @section('content')
     <div class="row">
 
-        <div class="col-xl-12 col-md-12 mb-4 p-md-5 bg-white">
-            <div class="d-flex justify-content-between mb-4">
-                <h5 class="font-weight-bold">لیست برند ها ({{ $brands->total() }})</h5>
-                <a class="btn btn-sm btn-outline-primary" href="{{ route('admin.brands.create') }}">
-                    <i class="fa fa-plus"></i>
-                    ایجاد برند
-                </a>
+        <div class="col-xl-12 col-md-12 mb-4 p-5 bg-white">
+            <div  class="d-flex flex-column text-center flex-md-row justify-content-md-between mb-4">
+                <h5 class="font-weight-bold mb-4">لیست برند ها ({{ $brands->total() }})</h5>
+                <div>
+                    <a class="btn btn-sm btn-outline-primary" href="{{ route('admin.brands.create') }}">
+                        <i class="fa fa-plus"></i>
+                        ایجاد برند
+                    </a>
+                </div>
+
             </div>
         </div>
         <div class="table-responsive">

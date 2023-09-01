@@ -94,7 +94,7 @@ class TagController extends Controller
                 'name' => $request->name,
             ]);
 //            Sweetalert::success('ویرایش اطلاعات با موفقیت انجام شد');
-            toastr()->info('ویرایش اطلاعات با موفقیت انجام شد', 'ویرایش', ['timeOut' => 1500, 'iconClass' => 'toast-info', 'positionClass' => 'toast-bottom-center']);
+            toastr()->info('ویرایش اطلاعات با موفقیت انجام شد', 'ویرایش', ['timeOut' => 1500, 'iconClass' => 'toast-info']);
             return redirect()->route('admin.tags.index');
         } catch (Exception $exception) {
             Sweetalert::error('ویرایش اطلاعات با خطا روبرو شد');

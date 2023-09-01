@@ -66,6 +66,7 @@
 <script src="{{ asset('/js/admin/admin.js') }}"></script>
 
 @include('sweetalert::sweetalert')
+@include('sweetalert::alert')
 @yield('script')
 
 </body>
