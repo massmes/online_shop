@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\ProductVariationController;
+
 //use App\Http\Controllers\Admin\ProductAttributeController;
 //use App\Http\Controllers\Admin\ProductImageController;
 //use App\Http\Controllers\Admin\ProductVariationController;
@@ -239,7 +240,7 @@ class ProductController extends Controller
     public function editCategory(Request $request, Product $product)
     {
         $categories = Category::where('parent_id', '!=', 0)->get();
-        return view('admin.products.edit_category', compact('product' , 'categories'));
+        return view('admin.products.edit_category', compact('product', 'categories'));
     }
 
     public function updateCategory(Request $request, Product $product)
@@ -275,7 +276,7 @@ class ProductController extends Controller
             return redirect()->back();
         }
 
-        toastr()->success('محصول مورد نظر ایجاد شد', 'باتشکر');
+        toastr()->success('محصول مورد نظر ایجاد شد', 'باتشکر', ['iconClasses' => 'toast-error']);
         return redirect()->route('admin.products.index');
     }
 }
