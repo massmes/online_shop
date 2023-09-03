@@ -4,6 +4,19 @@
     لیست ویژگی ها
 @endsection
 
+@section('script')
+    <script>
+        function confirmDelete() {
+            if (confirm('آیا از حذف مطمئن هستید؟')) {
+                document.getElementById('delete-form').submit();
+            } else {
+                return false;
+            }
+        }
+    </script>
+@endsection
+
+
 @section('content')
     <div class="row">
 
@@ -38,26 +51,26 @@
                         <td>
                             {{$attribute->name}}
                         </td>
-                        <td class="">
+                        <td class="d-flex justify-content-center">
                             <a href="{{route('admin.attributes.show',['attribute'=>$attribute->id])}}"
-                               class="btn btn-sm btn-outline-info mx-auto"
+                               class="btn btn-sm btn-outline-info mx-1"
                                title=" نمایش ویژگی">
                                 <i class="fa fa-eye"></i>
                             </a>
                             <a href="{{route('admin.attributes.edit',['attribute'=>$attribute->id])}}"
-                               class="btn btn-sm btn-outline-info mx-auto"
+                               class="btn btn-sm btn-outline-info mx-1"
                                title="ویرایش ویژگی">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            {{--                            <form action="{{ route('admin.attributes.destroy', ['attribute' => $attribute->id]) }}"--}}
-                            {{--                                  method="POST">--}}
-                            {{--                                @csrf--}}
-                            {{--                                @method('DELETE')--}}
-                            {{--                                <button id="popup" type="submit" class="btn btn-sm btn-outline-danger mx-auto"--}}
-                            {{--                                        title="حذف ویژگی">--}}
-                            {{--                                    <i class="fa fa-trash"></i>--}}
-                            {{--                                </button>--}}
-                            {{--                            </form>--}}
+                            <form class="mx-1" action="{{ route('admin.attributes.destroy', ['attribute' => $attribute->id]) }}"
+                                  method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button onclick="return confirmDelete()" id="popup" type="submit" class="btn btn-sm btn-outline-danger"
+                                        title="حذف ویژگی">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

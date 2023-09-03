@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Attribute;
 use Illuminate\Http\Request;
+use Exception;
+use Alert;
 
 
 class AttributeController extends Controller
@@ -41,10 +43,17 @@ class AttributeController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|min:2',
         ]);
-        $attribute = new Attribute();
-        $attribute->name = $request->input('name');
-        $attribute->save();
-        return redirect()->route('admin.attributes.index');
+        try {
+            $attribute = new Attribute();
+            $attribute->name = $request->input('name');
+            $attribute->save();
+            toastr()->success('عملیات با موفقیت انجام پذیرفت', 'ویژگی جدیدی ایجاد شد');
+            return redirect()->route('admin.attributes.index');
+        } catch (Exception $exception) {
+            toastr()->error('متاسفانه عملیات ایجاد ویژگی موفقیت آمیز نبود', 'خطایی رخ داده است', ['hideMethod' => 'fadeIn']);
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -81,10 +90,18 @@ class AttributeController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|min:2',
         ]);
-        $attribute->update([
-            'name' => $request->name,
-        ]);
-        return redirect()->route('admin.attributes.index');
+
+        try {
+            $attribute->update([
+                'name' => $request->name,
+            ]);
+            toastr()->success('عملیات با موفقیت انجام پذیرفت', 'ویژگی مورد نظر ویرایش شد');
+            return redirect()->route('admin.attributes.index');
+        } catch (Exception $exception) {
+            toastr()->error('متاسفانه عملیات ویرایش ویژگی موفقیت آمیز نبود', 'خطایی رخ داده است', ['hideMethod' => 'fadeIn']);
+            return redirect()->back();
+        }
+
     }
 
     /**
@@ -95,7 +112,15 @@ class AttributeController extends Controller
      */
     public function destroy(Attribute $attribute)
     {
-        $attribute->delete();
-        return redirect()->route('admin.attributes.index');
+//
+        try {
+            $attribute->delete();
+            toastr()->error('عملیات حذف با موفقیت انجام پذیرفت', 'ویژگی مورد نظر حذف شد');
+            return redirect()->route('admin.attributes.index');
+        } catch (Exception $exception) {
+            toastr()->error('متاسفانه عملیات حذف ویژگی موفقیت آمیز نبود', 'خطایی رخ داده است', ['hideMethod' => 'fadeIn']);
+            return redirect()->back();
+
+        }
     }
 }

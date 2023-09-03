@@ -8,6 +8,7 @@ use \App\Http\Controllers\Admin\TagController;
 use \App\Http\Controllers\Admin\ProductController;
 use \App\Http\Controllers\Admin\ProductImageController;
 use \App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Home\HomeController;
 
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -48,3 +49,5 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     Route::get('/products/{product}/category-edit/{title}', [ProductController::class, 'editCategory'])->name('products.category.edit');
     Route::put('/products/{product}/category-update', [ProductController::class, 'updateCategory'])->name('products.category.update');
 });
+
+Route::get('/', [HomeController::class, 'index']);
