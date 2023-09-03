@@ -23,73 +23,25 @@
                                 <li class="angle-shape">
                                     <a href="shop.html"> فروشگاه </a>
 
-                                    <ul class="mega-menu">
-                                        <li>
-                                            <a class="menu-title" href="#">مردانه</a>
+                                    @php
+                                        $parentCategories=App\Models\Category::where('parent_id',0)->get();
+                                    @endphp
 
-                                            <ul>
-                                                <li><a href="shop.html">پیراهن</a></li>
-
-                                                <li>
-                                                    <a href="#">تی شرت</a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="#">پالتو</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">لباس راحتی</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">لباس زیر </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li>
-                                            <a class="menu-title" href="#">زنانه</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="shop.html">مانتو</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">شومیز</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">دامن</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">پالتو</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"> لباس راحتی </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li>
-                                            <a class="menu-title" href="#">بچه گانه</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="product-details.html">ست لباس</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product-details-tab-2.html">شلوارک</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product-details-tab-3.html">ژاکت</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product-details-gallery.html">ست نوزاد</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product-details-gallery-right.html">پیراهن</a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                    <ul class="mega-menu my-1">
+                                        @foreach($parentCategories as $parentCategory)
+                                            <li class="my-2">
+                                                <a class="menu-title font-weight-bolder text-danger" href="#">{{$parentCategory->name}}</a>
+                                                <ul>
+                                                    @foreach($parentCategory->children as $childCategory)
+                                                        <li>
+                                                            <a href="#">{{$childCategory->name}}</a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </li>
-
                                 <li class="angle-shape">
                                     <a href="index.html"> صفحه اصلی </a>
                                 </li>

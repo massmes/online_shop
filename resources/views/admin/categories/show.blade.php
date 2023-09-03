@@ -13,12 +13,12 @@
                 <hr>
                 <div class="row">
                     <div class="form-group col-md-3">
-                        <label>نام انگلیسی</label>
+                        <label>نام</label>
                         <input type="text" disabled class="form-control" value="{{$category->name}}">
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label>نام</label>
+                        <label>نام انگلیسی</label>
                         <input type="text" disabled class="form-control" value="{{$category->slug}}">
                     </div>
 

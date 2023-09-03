@@ -56,7 +56,7 @@
     <div class="row">
         <div class="col-xl-12 col-md-12 mb-4 p-md-5 bg-white">
             <div class="mb-5">
-                <h5 class="font-weight-bolder"> : ویرایش دسته بندی{{$category->name}}</h5>
+                <h5 class="font-weight-bolder"> ویرایش دسته بندی : {{$category->name}}</h5>
                 <hr>
                 @include('admin.sections.errors')
                 <form action="{{route('admin.categories.update',['category'=>$category->id])}}" method="post">
