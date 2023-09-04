@@ -18,7 +18,7 @@
                 enableTimePicker: true,
                 englishNumber: true,
                 textFormat: 'yyyy-MM-dd HH:mm:ss',
-                disableBeforeToday: true,
+                // disableBeforeToday: true,
             });
 
 
@@ -28,7 +28,7 @@
                 enableTimePicker: true,
                 englishNumber: true,
                 textFormat: 'yyyy-MM-dd  HH:mm:ss',
-                disableBeforeToday: true,
+                // disableBeforeToday: true,
             });
         });
 

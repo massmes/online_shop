@@ -5,7 +5,7 @@
                 <div class="col-xl-2 col-lg-2">
                     <div class="logo pt-40">
                         <a href="index.html">
-                            <h3 class="font-weight-bold">WebProg.ir</h3>
+                            <h3 class="font-weight-bold">Sepanta</h3>
                         </a>
                     </div>
                 </div>
