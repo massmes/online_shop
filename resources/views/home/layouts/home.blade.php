@@ -9,11 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Webprog.ir - @yield('title')</title>
+    <title>Sepanta.com - @yield('title')</title>
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('/css/home/home.css') }}" rel="stylesheet">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(window).on('load', function() {})
+    </script>
 
     @yield('style')
 

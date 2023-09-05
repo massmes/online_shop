@@ -1,5 +1,6 @@
 require("bootstrap/dist/js/bootstrap.bundle");
 require("sweetalert");
+require("./files/rating.js");
 
 (function ($) {
     "use strict";
@@ -301,14 +302,14 @@ require("sweetalert");
         if ($button.text() === "+") {
             if (newVal < maxInput) {
                 newVal = parseFloat(oldValue) + 1;
-            }else{
+            } else {
                 newVal = 1;
             }
         } else {
             // Don't allow decrementing below zero
             if (newVal > 1) {
                 newVal = parseFloat(oldValue) - 1;
-            } else{
+            } else {
                 newVal = 1;
             }
         }
@@ -406,6 +407,7 @@ require("sweetalert");
             }
         });
     }
+
     itemToggler();
 
     /*-----------------------------------
@@ -725,14 +727,15 @@ require("sweetalert");
     var checked = $('.sin-payment input:checked')
     if (checked) {
         $(checked).siblings('.payment-box').slideDown(900);
-    };
+    }
+    ;
     $('.sin-payment input').on('change', function () {
         $('.payment-box').slideUp(900);
         $(this).siblings('.payment-box').slideToggle(900);
     });
 
-    $(window).load(function() {
-        $(".main-search-active").css('display','flex');
+    $(window).load(function () {
+        $(".main-search-active").css('display', 'flex');
     });
 
     window.number_format = function (number, decimals, dec_point, thousands_point) {
@@ -790,7 +793,8 @@ require("sweetalert");
         return res;
     }
 
-    var persian = { 0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹' };
+    var persian = {0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹'};
+
     function traverse(el) {
         if (el.nodeType == 3) {
             var list = el.data.match(/[0-9]/g);
@@ -803,10 +807,13 @@ require("sweetalert");
             traverse(el.childNodes[i]);
         }
     }
+
     var convert = traverse(document.body);
+
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
+
     formatNumber(document.body)
 
 })(jQuery);

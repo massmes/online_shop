@@ -16,15 +16,23 @@
             <div class="row align-items-center">
                 <div class="col-lg-4 col-md-5 col-12">
                     <div class="footer-social pb-20">
-                        <a href="#">اینستاگرام</a>
-                        <a href="#">تویتر</a>
-                        <a href="#">فیسبوک</a>
-                        <a href="#">لینکدین</a>
+                        <a href="#">
+                            <i class="fab fa-instagram" style="font-size: 20px"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-telegram" style="font-size: 20px"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-facebook" style="font-size: 20px"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fab fa-whatsapp" style="font-size: 20px"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-12">
                     <div class="copyright text-center pb-20">
-                        <p>Copyright © WebProg.ir</p>
+                        <p>Copyright © Sepanta.com</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-3 col-12">

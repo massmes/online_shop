@@ -18,6 +18,15 @@ class HomeController extends Controller
         $products = Product::where('is_active', 1)->get()->take(6);
 
 
+//        $productsd = Product::where('is_active', 1)->get()->take(6);
+//        $jsonenc = json_encode($productsd);
+//       $jsondc= json_decode($jsonenc)[2]->price_check->price;
+
+
+
+
+
+
         return view('home.index', compact('sliders', 'indexTopBanners', 'indexBottomBanners', 'products'));
     }
 }

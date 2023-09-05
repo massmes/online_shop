@@ -9,7 +9,6 @@
                         </a>
                     </div>
                 </div>
-
                 <div class="col-xl-7 col-lg-7">
                     <div class="main-menu text-center">
                         <nav>
