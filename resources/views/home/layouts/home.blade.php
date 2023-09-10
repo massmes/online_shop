@@ -14,9 +14,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('/css/home/home.css') }}" rel="stylesheet">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        $(window).on('load', function() {})
-    </script>
+
 
     @yield('style')
 

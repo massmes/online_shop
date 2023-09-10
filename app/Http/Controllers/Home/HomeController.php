@@ -15,7 +15,7 @@ class HomeController extends Controller
         $indexTopBanners = Banner::where('type', 'index-top')->where('is_active', 1)->orderBy('priority')->get();
         $indexBottomBanners = Banner::where('type', 'index-bottom')->where('is_active', 1)->orderBy('priority')->get();
 
-        $products = Product::where('is_active', 1)->get()->take(6);
+        $products = Product::where('is_active', 1)->get()->take(15);
 
 
 //        $productsd = Product::where('is_active', 1)->get()->take(6);

@@ -45,16 +45,16 @@
                         </td>
                         <td class="d-flex justify-content-center">
                             <a href="{{route('admin.brands.show',['brand'=>$brand->id])}}"
-                               class="btn btn-sm btn-outline-info mx-auto"
+                               class="btn btn-sm btn-outline-info mx-1"
                                title=" نمایش برند">
                                 <i class="fa fa-eye"></i>
                             </a>
                             <a href="{{route('admin.brands.edit',['brand'=>$brand->id])}}"
-                               class="btn btn-sm btn-outline-info mx-auto"
+                               class="btn btn-sm btn-outline-info mx-1"
                                title="ویرایش برند">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <form action="{{ route('admin.brands.destroy', ['brand' => $brand->id]) }}"
+                            <form class="mx-1" action="{{ route('admin.brands.destroy', ['brand' => $brand->id]) }}"
                                   method="POST">
                                 @csrf
                                 @method('DELETE')

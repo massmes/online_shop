@@ -7,6 +7,7 @@ use App\Models\Attribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Alert;
 
 class CategoryController extends Controller
 {
@@ -75,11 +76,11 @@ class CategoryController extends Controller
             DB::commit();
         } catch (\Exception $ex) {
             DB::rollBack();
-            alert()->error('مشکل در ایجاد دسته بندی', $ex->getMessage())->persistent('حله');
+            toastr()->error('مشکل در ایجاد دسته بندی', $ex->getMessage());
             return redirect()->back();
         }
 
-        alert()->success('دسته بندی مورد نظر ایجاد شد', 'باتشکر');
+        toastr()->success('دسته بندی مورد نظر ایجاد شد', 'عملیات موفقیت آمیز بود');
         return redirect()->route('admin.categories.index');
     }
 
@@ -152,11 +153,11 @@ class CategoryController extends Controller
             DB::commit();
         } catch (\Exception $ex) {
             DB::rollBack();
-            alert()->error('مشکل در ویرایش دسته بندی', $ex->getMessage())->persistent('حله');
+            toastr()->error('مشکل در ویرایش دسته بندی', $ex->getMessage());
             return redirect()->back();
         }
 
-        alert()->success('دسته بندی مورد نظر ویرایش شد', 'باتشکر');
+        toastr()->success('دسته بندی مورد نظر ویرایش شد', 'باتشکر');
         return redirect()->route('admin.categories.index');
     }
 

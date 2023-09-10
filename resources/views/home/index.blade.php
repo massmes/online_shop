@@ -7,9 +7,6 @@
 @section('script')
 
     <script>
-        $(window).on('load', function () {
-            $('.body');
-        });
 
         $('.variation-select').on('change', function () {
             let variation = JSON.parse(this.value);

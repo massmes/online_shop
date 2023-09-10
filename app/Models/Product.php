@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use MongoDB\Driver\Query;
 
 class Product extends Model
 {
@@ -42,6 +43,74 @@ class Product extends Model
     public function getIsActiveAttribute($is_active)
     {
         return $is_active ? 'فعال' : 'غیر فعال';
+    }
+
+    public function scopeFilter($query)
+    {
+
+        if (request()->has('attribute')) {
+            foreach (request()->attribute as $attribute) {
+                $query->whereHas('attributes', function ($query) use ($attribute) {
+                    foreach (explode('-', $attribute) as $index => $item) {
+                        if ($index == 0) {
+                            $query->where('value', $item);
+                        } else {
+                            $query->orWhere('value', $item);
+                        }
+                    }
+                });
+            }
+        }
+
+        if (request()->has('variation')) {
+            $query->whereHas('variations', function ($query) {
+                foreach (explode('-', request()->variation) as $index => $variations) {
+                    if ($index == 0) {
+                        $query->where('value', $variations);
+                    } else {
+                        $query->orWhere('value', $variations);
+                    }
+                }
+            });
+        }
+
+        if (request()->has('sortBy')) {
+            $sortBy = request()->sortBy;
+
+            switch ($sortBy) {
+                case 'max':
+                    $query->orderByDesc(ProductVariation::select('price')->whereColumn('product_variations.product_id', 'products.id')->orderBy('sale_price', 'desc')->take(1),);
+                    break;
+                case 'min':
+                    $query->orderBy(ProductVariation::select('price')->whereColumn('product_variations.product_id', 'products.id')->orderBy('sale_price', 'asc')->take(1),);
+
+                    break;
+                case 'latest':
+                    $query->latest();
+                    break;
+                case 'oldest':
+                    $query->oldest();
+                    break;
+                default:
+                    $query;
+                    break;
+
+            }
+        }
+
+        return $query;
+
+    }
+
+
+    public function scopeSearch($query)
+    {
+        $keywordSearch = request()->serach;
+        if (request()->has('search') && trim($keywordSearch) != "") {
+            $query->where('name', 'LIKE', '%' . trim($keywordSearch) . '%');
+        }
+
+        return $query;
     }
 
     public function getQuantityCheckAttribute()
