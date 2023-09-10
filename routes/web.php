@@ -59,3 +59,7 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/categories/{category:slug}', [HomeCategoryController::class, 'show'])->name('home.categories.show');
 Route::get('/products/{product:slug}/{brand:name}', [HomeProductController::class, 'show'])->name('home.products.show');
+
+Route::get('/test', function () {
+    auth()->logout();
+});
