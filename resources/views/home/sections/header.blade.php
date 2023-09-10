@@ -170,7 +170,7 @@
             <div class="row align-items-center">
                 <div class="col-6">
                     <div class="mobile-logo">
-                        <a href="index.html">
+                        <a href="{{route('home.index')}}">
                             <h4 class="font-weight-bold">Sepanta</h4>
                         </a>
                     </div>
