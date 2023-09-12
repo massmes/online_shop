@@ -232,7 +232,7 @@ class Client implements ClientInterface, \Psr\Http\Client\ClientInterface
             'allow_redirects' => RedirectMiddleware::$defaultSettings,
             'http_errors' => true,
             'decode_content' => true,
-            'verify' => true,
+            'verify' => false,
             'cookies' => false,
             'idn_conversion' => false,
         ];
@@ -480,4 +480,5 @@ class Client implements ClientInterface, \Psr\Http\Client\ClientInterface
             .'application/x-www-form-urlencoded request, or the "multipart" '
             .'request option to send a multipart/form-data request.');
     }
+
 }

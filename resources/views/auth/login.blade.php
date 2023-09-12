@@ -1,7 +1,7 @@
 @extends('home.layouts.home')
 
 @section('title')
-    صفحه ای وزود
+    صفحه ورود
 @endsection
 
 @section('content')
@@ -62,7 +62,7 @@
                                                     <a href="{{route('password.request')}}"> فراموشی رمز عبور ! </a>
                                                 </div>
                                                 <button type="submit">ورود</button>
-                                                <a href="index.html" class="btn btn-google btn-block mt-4">
+                                                <a href="{{route('provider.login',['provider'=>'google'])}}" class="btn btn-google btn-block mt-4">
                                                     <i class="sli sli-social-google"></i> ورود با حساب گوگل
                                                 </a>
                                             </div>

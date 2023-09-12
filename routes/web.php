@@ -14,6 +14,9 @@ use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\CategoryController as HomeCategoryController;
 use App\Http\Controllers\Home\ProductController as HomeProductController;
 
+//Auth Controller
+use App\Http\Controllers\Auth\AuthController;
+
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -59,6 +62,10 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/categories/{category:slug}', [HomeCategoryController::class, 'show'])->name('home.categories.show');
 Route::get('/products/{product:slug}/{brand:name}', [HomeProductController::class, 'show'])->name('home.products.show');
+
+Route::get('/login/{provider}', [AuthController::class, 'redirectToProvider'])->name('provider.login');
+Route::get('/login/{provider}/callback', [AuthController::class, 'handleProviderCallback']);
+
 
 Route::get('/test', function () {
     auth()->logout();

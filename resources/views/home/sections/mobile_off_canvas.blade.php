@@ -63,12 +63,20 @@
             <div class="single-mobile-curr-lang">
                 <ul class="text-right">
                     @auth
-                        <li class="my-3"><a href="my-account.html"> پروفایل </a></li>
-                    @else
-                        <li class="my-3"><a href="{{route('login')}}"> ورود </a></li>
-                        <li class="my-3">
-                            <a href="{{route('register')}}"> ایجاد حساب </a>
+                        <li><a href="my-account.html">پروفایل</a></li>
+                        <li>
+                            @php
+                                $user_id = auth()->user()->id;
+                                $user = \App\Models\User::find($user_id);
+                                $avatar = $user->avatar;
+                            @endphp
+                            <img class="img-profile rounded-circle" src="{{ $avatar }}"
+                                 alt="{{ $user->name }}" width="50" height="50">
+                            <span>{{ $user->user_name }}</span>
                         </li>
+                    @else
+                        <li><a href="{{ route('login') }}">ورود</a></li>
+                        <li><a href="{{ route('register') }}">ایجاد حساب</a></li>
                     @endauth
                 </ul>
             </div>
