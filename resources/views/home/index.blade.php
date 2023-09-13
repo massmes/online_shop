@@ -380,11 +380,11 @@
                                     </div>
                                     <div class="pro-details-rating-wrap">
                                         <div data-rating-stars="5"
-                                            data-rating-readonly="true"
-                                            data-rating-value="{{ ceil($product->rates->avg('rate'))}}">
+                                             data-rating-readonly="true"
+                                             data-rating-value="{{ ceil($product->rates->avg('rate'))}}">
                                         </div>
                                         <span class="mx-3">|</span>
-                                        <span class="mx-1">3 دیدگاه</span>
+                                        <span class="mx-1">{{$product->approvedComments()->count()}} دیدگاه </span>
                                     </div>
                                     <p class="text-right">
                                         {{$product->description}}

@@ -28,7 +28,7 @@ return array(
         'closeClass' => 'toast-close-button',
         'closeDuration' => 300,
         'closeEasing' => 'swing',
-        'closeHtml' => '<button><i class="icon-off"></i></button>',
+        'closeHtml' => '<button><i class="fa fa-close"></i></button>',
         'closeMethod' => 'fadeOut',
         'closeOnHover' => true,
         'containerId' => 'toast-container',
@@ -59,7 +59,7 @@ return array(
         'showMethod' => 'fadeIn',
         'tapToDismiss' => true,
         'target' => 'body',
-        'timeOut' => 2000,
+        'timeOut' => 7000,
         'titleClass' => 'toast-title',
         'toastClass' => 'toast',
     ]

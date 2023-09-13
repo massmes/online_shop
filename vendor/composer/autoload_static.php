@@ -163,6 +163,8 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
             'GrahamCampbell\\ResultType\\' => 26,
+            'Ghasedak\\Laravel\\' => 17,
+            'Ghasedak\\' => 9,
         ),
         'F' => 
         array (
@@ -529,6 +531,14 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         array (
             0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
         ),
+        'Ghasedak\\Laravel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ghasedak/laravel/src',
+        ),
+        'Ghasedak\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ghasedak/php/src',
+        ),
         'Fruitcake\\Cors\\' => 
         array (
             0 => __DIR__ . '/..' . '/fruitcake/php-cors/src',
@@ -635,6 +645,7 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         'App\\Http\\Controllers\\Admin\\ProductImageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProductImageController.php',
         'App\\Http\\Controllers\\Admin\\ProductVariationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProductVariationController.php',
         'App\\Http\\Controllers\\Admin\\TagController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TagController.php',
+        'App\\Http\\Controllers\\Auth\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\Home\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/CategoryController.php',
         'App\\Http\\Controllers\\Home\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/HomeController.php',
@@ -1701,6 +1712,11 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         'Flasher\\Prime\\Translation\\TranslatorInterface' => __DIR__ . '/..' . '/php-flasher/flasher/Translation/TranslatorInterface.php',
         'Fruitcake\\Cors\\CorsService' => __DIR__ . '/..' . '/fruitcake/php-cors/src/CorsService.php',
         'Fruitcake\\Cors\\Exceptions\\InvalidOptionException' => __DIR__ . '/..' . '/fruitcake/php-cors/src/Exceptions/InvalidOptionException.php',
+        'Ghasedak\\Exceptions\\ApiException' => __DIR__ . '/..' . '/ghasedak/php/src/Exceptions/ApiException.php',
+        'Ghasedak\\Exceptions\\HttpException' => __DIR__ . '/..' . '/ghasedak/php/src/Exceptions/HttpException.php',
+        'Ghasedak\\GhasedakApi' => __DIR__ . '/..' . '/ghasedak/php/src/GhasedakApi.php',
+        'Ghasedak\\Laravel\\GhasedakFacade' => __DIR__ . '/..' . '/ghasedak/laravel/src/GhasedakFacade.php',
+        'Ghasedak\\Laravel\\GhasedakServiceProvider' => __DIR__ . '/..' . '/ghasedak/laravel/src/GhasedakServiceProvider.php',
         'GrahamCampbell\\ResultType\\Error' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Error.php',
         'GrahamCampbell\\ResultType\\Result' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Result.php',
         'GrahamCampbell\\ResultType\\Success' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Success.php',

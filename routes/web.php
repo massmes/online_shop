@@ -8,11 +8,18 @@ use \App\Http\Controllers\Admin\TagController;
 use \App\Http\Controllers\Admin\ProductController;
 use \App\Http\Controllers\Admin\ProductImageController;
 use \App\Http\Controllers\Admin\BannerController;
+use \App\Http\Controllers\Admin\CommentController;
+
+
+use Ghasedak\Laravel\GhasedakFacade;
+
 
 //Home Controllers
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\CategoryController as HomeCategoryController;
 use App\Http\Controllers\Home\ProductController as HomeProductController;
+use App\Http\Controllers\Home\CommentController as HomeCommentController;
+use App\Http\Controllers\Home\UserProfileController ;
 
 //Auth Controller
 use App\Http\Controllers\Auth\AuthController;
@@ -42,8 +49,10 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     Route::resource('tags', TagController::class);
     Route::resource('products', ProductController::class);
     Route::resource('banners', BannerController::class);
+    Route::resource('comments', CommentController::class);
 
-
+    //for approved comments
+    Route::get('/comments/{comment}/change-status', [CommentController::class, 'changeStatus'])->name('comments.change.status');
     // Get Category Attributes
     Route::get('/category-attributes/{category}', [CategoryController::class, 'getCategoryAttributes']);
 
@@ -57,14 +66,24 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     Route::put('/products/{product}/category-update', [ProductController::class, 'updateCategory'])->name('products.category.update');
 });
 
+
 //Home Route
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/categories/{category:slug}', [HomeCategoryController::class, 'show'])->name('home.categories.show');
 Route::get('/products/{product:slug}/{brand:name}', [HomeProductController::class, 'show'])->name('home.products.show');
 
+Route::post('/comments/{product}', [HomeCommentController::class, 'store'])->name('home.comments.store');
+
 Route::get('/login/{provider}', [AuthController::class, 'redirectToProvider'])->name('provider.login');
 Route::get('/login/{provider}/callback', [AuthController::class, 'handleProviderCallback']);
+
+Route::prefix('profile')->name('home.')->group(function () {
+
+    Route::get('/', [UserProfileController::class, 'index'])->name('users_profile.index');
+    Route::get('/comments', [HomeCommentController::class, 'usersProfileIndex'])->name('comments.users_profile.index');
+
+});
 
 
 Route::get('/test', function () {

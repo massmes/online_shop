@@ -50,21 +50,21 @@
                 <a class="collapse-item" href="{{route('admin.categories.index')}}">دسته بندی ها</a>
                 <a class="collapse-item" href="{{route('admin.attributes.index')}}">ویژگی ها</a>
                 <a class="collapse-item" href="{{route('admin.tags.index')}}">تگ ها</a>
+                <a class="collapse-item" href="{{route('admin.comments.index')}}">دیدگاه ها</a>
             </div>
         </div>
     </li>
 
-
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-
-    <!-- Nav Item - Brands -->
+    <!-- Nav Item - Banners -->
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.banners.index')}}">
-            <i class="fas fa-image"></i>
+            <i class="fas fa-fw fa-image"></i>
             <span> بنرها </span>
         </a>
     </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
 
 
     <!-- Sidebar Toggler (Sidebar) -->

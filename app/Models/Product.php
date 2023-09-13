@@ -147,4 +147,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductRate::class);
     }
+
+    public function approvedComments()
+    {
+        return $this->hasMany(Comment::class)->where('approved', 1);
+    }
 }
