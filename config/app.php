@@ -183,6 +183,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         Wavey\SweetAlert\SweetAlertServiceProvider::class,
+        Anetwork\Validation\PersianValidationServiceProvider::class,
 
         /*
          * Package Service Providers...

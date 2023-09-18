@@ -204,6 +204,7 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         'A' => 
         array (
             'App\\' => 4,
+            'Anetwork\\Validation\\' => 20,
         ),
     );
 
@@ -626,9 +627,16 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
             0 => __DIR__ . '/../..' . '/app',
             1 => __DIR__ . '/..' . '/laravel/pint/app',
         ),
+        'Anetwork\\Validation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/anetwork/validation/src',
+        ),
     );
 
     public static $classMap = array (
+        'Anetwork\\Validation\\PersianValidationServiceProvider' => __DIR__ . '/..' . '/anetwork/validation/src/PersianValidationServiceProvider.php',
+        'Anetwork\\Validation\\ValidationMessages' => __DIR__ . '/..' . '/anetwork/validation/src/ValidationMessages.php',
+        'Anetwork\\Validation\\ValidationRules' => __DIR__ . '/..' . '/anetwork/validation/src/ValidationRules.php',
         'App\\Actions\\Fortify\\CreateNewUser' => __DIR__ . '/../..' . '/app/Actions/Fortify/CreateNewUser.php',
         'App\\Actions\\Fortify\\PasswordValidationRules' => __DIR__ . '/../..' . '/app/Actions/Fortify/PasswordValidationRules.php',
         'App\\Actions\\Fortify\\ResetUserPassword' => __DIR__ . '/../..' . '/app/Actions/Fortify/ResetUserPassword.php',
@@ -640,6 +648,7 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         'App\\Http\\Controllers\\Admin\\BannerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BannerController.php',
         'App\\Http\\Controllers\\Admin\\BrandController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BrandController.php',
         'App\\Http\\Controllers\\Admin\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CategoryController.php',
+        'App\\Http\\Controllers\\Admin\\CommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CommentController.php',
         'App\\Http\\Controllers\\Admin\\ProductAttributeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProductAttributeController.php',
         'App\\Http\\Controllers\\Admin\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProductController.php',
         'App\\Http\\Controllers\\Admin\\ProductImageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProductImageController.php',
@@ -648,8 +657,10 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         'App\\Http\\Controllers\\Auth\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\Home\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/CategoryController.php',
+        'App\\Http\\Controllers\\Home\\CommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/CommentController.php',
         'App\\Http\\Controllers\\Home\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/HomeController.php',
         'App\\Http\\Controllers\\Home\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/ProductController.php',
+        'App\\Http\\Controllers\\Home\\UserProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/UserProfileController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -664,6 +675,7 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         'App\\Models\\Banner' => __DIR__ . '/../..' . '/app/Models/Banner.php',
         'App\\Models\\Brand' => __DIR__ . '/../..' . '/app/Models/Brand.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
+        'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/Models/Comment.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Models\\ProductAttribute' => __DIR__ . '/../..' . '/app/Models/ProductAttribute.php',
         'App\\Models\\ProductImage' => __DIR__ . '/../..' . '/app/Models/ProductImage.php',
@@ -671,12 +683,14 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         'App\\Models\\ProductVariation' => __DIR__ . '/../..' . '/app/Models/ProductVariation.php',
         'App\\Models\\Tag' => __DIR__ . '/../..' . '/app/Models/Tag.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Notifications\\OTPSms' => __DIR__ . '/../..' . '/app/Notifications/OTPSms.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\FortifyServiceProvider' => __DIR__ . '/../..' . '/app/Providers/FortifyServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\channels\\SmsChannel' => __DIR__ . '/../..' . '/app/channels/SmsChannel.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'BaconQrCode\\Common\\BitArray' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/BitArray.php',
         'BaconQrCode\\Common\\BitMatrix' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/BitMatrix.php',
@@ -3061,6 +3075,7 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
         'Laravel\\Fortify\\Actions\\AttemptToAuthenticate' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/AttemptToAuthenticate.php',
+        'Laravel\\Fortify\\Actions\\CanonicalizeUsername' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/CanonicalizeUsername.php',
         'Laravel\\Fortify\\Actions\\CompletePasswordReset' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/CompletePasswordReset.php',
         'Laravel\\Fortify\\Actions\\ConfirmPassword' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/ConfirmPassword.php',
         'Laravel\\Fortify\\Actions\\ConfirmTwoFactorAuthentication' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/ConfirmTwoFactorAuthentication.php',
@@ -3072,6 +3087,7 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         'Laravel\\Fortify\\Actions\\RedirectIfTwoFactorAuthenticatable' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/RedirectIfTwoFactorAuthenticatable.php',
         'Laravel\\Fortify\\Contracts\\ConfirmPasswordViewResponse' => __DIR__ . '/..' . '/laravel/fortify/src/Contracts/ConfirmPasswordViewResponse.php',
         'Laravel\\Fortify\\Contracts\\CreatesNewUsers' => __DIR__ . '/..' . '/laravel/fortify/src/Contracts/CreatesNewUsers.php',
+        'Laravel\\Fortify\\Contracts\\EmailVerificationNotificationSentResponse' => __DIR__ . '/..' . '/laravel/fortify/src/Contracts/EmailVerificationNotificationSentResponse.php',
         'Laravel\\Fortify\\Contracts\\FailedPasswordConfirmationResponse' => __DIR__ . '/..' . '/laravel/fortify/src/Contracts/FailedPasswordConfirmationResponse.php',
         'Laravel\\Fortify\\Contracts\\FailedPasswordResetLinkRequestResponse' => __DIR__ . '/..' . '/laravel/fortify/src/Contracts/FailedPasswordResetLinkRequestResponse.php',
         'Laravel\\Fortify\\Contracts\\FailedPasswordResetResponse' => __DIR__ . '/..' . '/laravel/fortify/src/Contracts/FailedPasswordResetResponse.php',
@@ -3131,6 +3147,7 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         'Laravel\\Fortify\\Http\\Requests\\LoginRequest' => __DIR__ . '/..' . '/laravel/fortify/src/Http/Requests/LoginRequest.php',
         'Laravel\\Fortify\\Http\\Requests\\TwoFactorLoginRequest' => __DIR__ . '/..' . '/laravel/fortify/src/Http/Requests/TwoFactorLoginRequest.php',
         'Laravel\\Fortify\\Http\\Requests\\VerifyEmailRequest' => __DIR__ . '/..' . '/laravel/fortify/src/Http/Requests/VerifyEmailRequest.php',
+        'Laravel\\Fortify\\Http\\Responses\\EmailVerificationNotificationSentResponse' => __DIR__ . '/..' . '/laravel/fortify/src/Http/Responses/EmailVerificationNotificationSentResponse.php',
         'Laravel\\Fortify\\Http\\Responses\\FailedPasswordConfirmationResponse' => __DIR__ . '/..' . '/laravel/fortify/src/Http/Responses/FailedPasswordConfirmationResponse.php',
         'Laravel\\Fortify\\Http\\Responses\\FailedPasswordResetLinkRequestResponse' => __DIR__ . '/..' . '/laravel/fortify/src/Http/Responses/FailedPasswordResetLinkRequestResponse.php',
         'Laravel\\Fortify\\Http\\Responses\\FailedPasswordResetResponse' => __DIR__ . '/..' . '/laravel/fortify/src/Http/Responses/FailedPasswordResetResponse.php',
@@ -3171,6 +3188,7 @@ class ComposerStaticInit0520200d10dfed26c8dda09e883519e0
         'Laravel\\Sanctum\\Guard' => __DIR__ . '/..' . '/laravel/sanctum/src/Guard.php',
         'Laravel\\Sanctum\\HasApiTokens' => __DIR__ . '/..' . '/laravel/sanctum/src/HasApiTokens.php',
         'Laravel\\Sanctum\\Http\\Controllers\\CsrfCookieController' => __DIR__ . '/..' . '/laravel/sanctum/src/Http/Controllers/CsrfCookieController.php',
+        'Laravel\\Sanctum\\Http\\Middleware\\AuthenticateSession' => __DIR__ . '/..' . '/laravel/sanctum/src/Http/Middleware/AuthenticateSession.php',
         'Laravel\\Sanctum\\Http\\Middleware\\CheckAbilities' => __DIR__ . '/..' . '/laravel/sanctum/src/Http/Middleware/CheckAbilities.php',
         'Laravel\\Sanctum\\Http\\Middleware\\CheckForAnyAbility' => __DIR__ . '/..' . '/laravel/sanctum/src/Http/Middleware/CheckForAnyAbility.php',
         'Laravel\\Sanctum\\Http\\Middleware\\CheckForAnyScope' => __DIR__ . '/..' . '/laravel/sanctum/src/Http/Middleware/CheckForAnyScope.php',

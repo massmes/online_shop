@@ -78,6 +78,9 @@
                                                     <i class="sli sli-social-google"></i>
                                                     ایجاد اکانت با گوگل
                                                 </a>
+                                                <a href="{{route('login.cellphone')}}" class="btn btn-google btn-block mt-4">
+                                                    <i class="fa fa-mobile-alt"></i> ورود با شماره موبایل
+                                                </a>
                                             </div>
                                         </form>
                                     </div>

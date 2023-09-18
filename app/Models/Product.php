@@ -152,4 +152,9 @@ class Product extends Model
     {
         return $this->hasMany(Comment::class)->where('approved', 1);
     }
+
+    public function checkUserWishList($userId)
+    {
+        return $this->hasMany(Wishlist::class)->where('user_id', $userId)->exists();
+    }
 }

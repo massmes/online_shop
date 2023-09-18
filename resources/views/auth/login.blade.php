@@ -65,6 +65,9 @@
                                                 <a href="{{route('provider.login',['provider'=>'google'])}}" class="btn btn-google btn-block mt-4">
                                                     <i class="sli sli-social-google"></i> ورود با حساب گوگل
                                                 </a>
+                                                <a href="{{route('login.cellphone')}}" class="btn btn-google btn-block mt-4">
+                                                    <i class="fa fa-mobile-alt"></i> ورود با شماره موبایل
+                                                </a>
                                             </div>
                                         </form>
                                     </div>

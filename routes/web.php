@@ -9,8 +9,7 @@ use \App\Http\Controllers\Admin\ProductController;
 use \App\Http\Controllers\Admin\ProductImageController;
 use \App\Http\Controllers\Admin\BannerController;
 use \App\Http\Controllers\Admin\CommentController;
-
-
+use \App\Http\Controllers\Home\WishlistController;
 use Ghasedak\Laravel\GhasedakFacade;
 
 
@@ -19,7 +18,10 @@ use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\CategoryController as HomeCategoryController;
 use App\Http\Controllers\Home\ProductController as HomeProductController;
 use App\Http\Controllers\Home\CommentController as HomeCommentController;
-use App\Http\Controllers\Home\UserProfileController ;
+use App\Http\Controllers\Home\UserProfileController;
+
+use App\Models\User;
+use App\Notifications\OTPSms;
 
 //Auth Controller
 use App\Http\Controllers\Auth\AuthController;
@@ -74,18 +76,35 @@ Route::get('/categories/{category:slug}', [HomeCategoryController::class, 'show'
 Route::get('/products/{product:slug}/{brand:name}', [HomeProductController::class, 'show'])->name('home.products.show');
 
 Route::post('/comments/{product}', [HomeCommentController::class, 'store'])->name('home.comments.store');
+//for wishList
+Route::get('/add-wish-list/{product}', [WishlistController::class, 'add'])->name('home.wishlist.add');
+Route::get('/remove-wish-list/{product}', [WishlistController::class, 'remove'])->name('home.wishlist.remove');
 
 Route::get('/login/{provider}', [AuthController::class, 'redirectToProvider'])->name('provider.login');
 Route::get('/login/{provider}/callback', [AuthController::class, 'handleProviderCallback']);
+
+//Login CELLPHONE
+
+Route::any('/logincellphone', [AuthController::class, 'loginCellphone'])->name('login.cellphone');
+Route::post('/check-otp', [AuthController::class, 'checkOtp'])->name('user.check.otp');
+Route::post('/resend-otp', [AuthController::class, 'resendOtp'])->name('user.resend.otp');
+
+//
 
 Route::prefix('profile')->name('home.')->group(function () {
 
     Route::get('/', [UserProfileController::class, 'index'])->name('users_profile.index');
     Route::get('/comments', [HomeCommentController::class, 'usersProfileIndex'])->name('comments.users_profile.index');
+    Route::get('/wishlist', [WishlistController::class, 'usersProfileIndex'])->name('wishlist.users_profile.index');
 
 });
 
 
 Route::get('/test', function () {
+    $user = User::find(16);
+    $user->notify(new OTPSms(13646764));
+});
+
+Route::get('/logout', function () {
     auth()->logout();
 });

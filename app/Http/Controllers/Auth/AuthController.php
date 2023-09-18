@@ -4,13 +4,18 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Notifications\OTPSms;
 use Carbon\Carbon;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 use Exception;
+use Psy\Util\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 use Wavey\Sweetalert\Sweetalert;
+use Anetwork\Validation\PersianValidationServiceProvider;
+use Anetwork\Validation\ValidationMessages;
 
 class AuthController extends Controller
 {
@@ -48,5 +53,90 @@ class AuthController extends Controller
         auth()->login($user, $remember = true);
 
         return redirect()->route('home.index');
+    }
+
+    public function loginCellphone(Request $request)
+    {
+        if ($request->method() == 'GET') {
+            return view('auth.loginCell');
+        }
+
+        $request->validate([
+            'cellphone' => 'required|iran_mobile',
+        ]);
+
+        try {
+            $user = User::where('cellphone', $request->cellphone)->first();
+            $OTPCode = mt_rand(100000, 999999);
+//            $loginToken = Hash::make('DCGHYTUpioamcFHBF@sdfdsf%!!sdASDFyiSF');
+            $loginToken = bin2hex(random_bytes(32));
+
+            if ($user) {
+
+                $user->update([
+                    'otp' => $OTPCode,
+                    'login_token' => $loginToken,
+                ]);
+            } else {
+                $user = User::create([
+                    'cellphone' => $request->cellphone,
+                    'otp' => $OTPCode,
+                    'login_token' => $loginToken,
+                ]);
+            }
+            $user->notify(new OTPSms($OTPCode));
+
+            return response(['login_token' => $loginToken], 200);
+        } catch (Exception $exception) {
+            return response(['errors' => $exception->getMessage()], 422);
+
+        }
+    }
+
+    public function checkOtp(Request $request)
+    {
+        $request->validate([
+            'otp' => 'required|digits:6',
+            'login_token' => 'required',
+        ]);
+
+        try {
+            $user = User::where('login_token', $request->login_token)->firstOrFail();
+
+            if ($user->otp == $request->otp) {
+                auth()->login($user, $remember = true);
+                return response(['ورود با موفقیت انجام شد'], 200);
+            } else {
+                return response(['errors' => ['otp' => ['کد وارد شده اشتباه است']]], 422);
+            }
+        } catch (Exception $exception) {
+            return response(['errors' => $exception->getMessage()], 422);
+        }
+
+    }
+
+    public function resendOtp(Request $request)
+    {
+        $request->validate([
+            'login_token' => 'required',
+        ]);
+
+        try {
+            $user = User::where('login_token', $request->login_token)->firstOrFail();
+            $OTPCode = mt_rand(100000, 999999);
+//            $loginToken = Hash::make('DCGHYTUpioamcFHBF@sdfdsf%!!sdASDFyiSF');
+            $loginToken = bin2hex(random_bytes(32));
+
+            $user->update([
+                'otp' => $OTPCode,
+                'login_token' => $loginToken,
+            ]);
+            $user->notify(new OTPSms($OTPCode));
+
+            return response(['login_token' => $loginToken], 200);
+        } catch (Exception $exception) {
+            return response(['errors' => $exception->getMessage()], 422);
+
+        }
     }
 }
