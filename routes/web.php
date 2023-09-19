@@ -9,12 +9,14 @@ use \App\Http\Controllers\Admin\ProductController;
 use \App\Http\Controllers\Admin\ProductImageController;
 use \App\Http\Controllers\Admin\BannerController;
 use \App\Http\Controllers\Admin\CommentController;
-use \App\Http\Controllers\Home\WishlistController;
+use \App\Http\Controllers\Admin\UserController;
 use Ghasedak\Laravel\GhasedakFacade;
 
 
 //Home Controllers
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Home\CompareController;
+use \App\Http\Controllers\Home\WishlistController;
 use App\Http\Controllers\Home\CategoryController as HomeCategoryController;
 use App\Http\Controllers\Home\ProductController as HomeProductController;
 use App\Http\Controllers\Home\CommentController as HomeCommentController;
@@ -52,6 +54,7 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('banners', BannerController::class);
     Route::resource('comments', CommentController::class);
+    Route::resource('users', UserController::class);
 
     //for approved comments
     Route::get('/comments/{comment}/change-status', [CommentController::class, 'changeStatus'])->name('comments.change.status');
@@ -80,6 +83,11 @@ Route::post('/comments/{product}', [HomeCommentController::class, 'store'])->nam
 Route::get('/add-wish-list/{product}', [WishlistController::class, 'add'])->name('home.wishlist.add');
 Route::get('/remove-wish-list/{product}', [WishlistController::class, 'remove'])->name('home.wishlist.remove');
 
+Route::get('/compare', [CompareController::class, 'index'])->name('home.compare.index');
+Route::get('/add-to-compare/{product}', [CompareController::class, 'add'])->name('home.compare.add');
+Route::get('/remove-from-compare/{product}', [CompareController::class, 'remove'])->name('home.compare.remove');
+
+
 Route::get('/login/{provider}', [AuthController::class, 'redirectToProvider'])->name('provider.login');
 Route::get('/login/{provider}/callback', [AuthController::class, 'handleProviderCallback']);
 
@@ -107,4 +115,8 @@ Route::get('/test', function () {
 
 Route::get('/logout', function () {
     auth()->logout();
+});
+
+Route::get('/test1', function () {
+    dd(session()->get('compareProducts'));
 });

@@ -133,6 +133,9 @@
                             </button>
                             <div class="setting-content">
                                 <ul class="text-right">
+                                    @if(session('compareProducts') && count(session('compareProducts')) > 0)
+                                        <li><a href="{{ route('home.compare.index') }}">مقایسه محصولات</a></li>
+                                    @endif
                                     @auth
                                         <li><a href="{{route('home.users_profile.index')}}">پروفایل</a></li>
                                         <li>
@@ -144,13 +147,12 @@
                                             <img class="img-profile rounded-circle" src="{{ $avatar }}"
                                                  alt="{{ $user->name }}" width="80" height="80">
                                             <p>{{ $user->user_name }}</p>
-                                         </li>
+                                        </li>
                                     @else
                                         <li><a href="{{ route('login') }}">ورود</a></li>
                                         <li><a href="{{ route('register') }}">ایجاد حساب</a></li>
                                     @endauth
                                 </ul>
-
                             </div>
                         </div>
                     </div>

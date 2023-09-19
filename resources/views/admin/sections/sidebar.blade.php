@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Samoptic.com</div>
+        <div class="sidebar-brand-text mx-3">Sepanta.com</div>
     </a>
 
     <!-- Divider -->
@@ -65,6 +65,12 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.users.index')}}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>کاربران سایت</span>
+        </a>
+    </li>
 
 
     <!-- Sidebar Toggler (Sidebar) -->
