@@ -184,6 +184,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         Wavey\SweetAlert\SweetAlertServiceProvider::class,
         Anetwork\Validation\PersianValidationServiceProvider::class,
+        Darryldecode\Cart\CartServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -215,6 +216,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Alert' => Wavey\SweetAlert\Facades\Alert::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
     ])->toArray(),
 
 ];
