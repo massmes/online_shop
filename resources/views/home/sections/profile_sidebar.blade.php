@@ -5,7 +5,7 @@
         پروفایل
     </a>
 
-    <a href="#orders" data-toggle="tab">
+    <a href="{{route('home.cart.index')}}" data-toggle="tab">
         <i class="sli sli-basket ml-1"></i>
         سفارشات
     </a>

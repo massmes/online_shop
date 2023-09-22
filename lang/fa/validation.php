@@ -233,7 +233,12 @@ return [
         'priority' => 'اولویت',
         'text' => 'متن',
         'cellphone' => 'شماره همراه',
-        'otp'=>'رمز یکبار مصرف',
+        'otp' => 'رمز یکبار مصرف',
+        'code' => 'کد',
+        'amount' => 'مبلغ',
+        'expired_at' => 'تاریخ انقضا',
+        'max_percentage_amount' => 'حداکثر مبلغ',
+        'percentage' => 'درصدی',
 
 
     ],
