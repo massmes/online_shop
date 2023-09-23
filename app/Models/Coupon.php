@@ -11,4 +11,9 @@ class Coupon extends Model
 
     protected $table = "coupons";
     protected $guarded = [];
+
+//    public function getTypeAttribute($type)
+//    {
+//        return $type == 'amount' ? 'مبلغی' : 'درصدی';
+//    }
 }

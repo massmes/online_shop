@@ -12,7 +12,7 @@
             modalMode: '#expired_at',
             enableTimePicker: true,
             englishNumber: true,
-            textFormat: 'yyyy-MM-dd  HH:mm:ss',
+            textFormat: 'yyyy-MM-dd HH:mm:ss',
             // disableBeforeToday: true,
         });
     </script>
@@ -45,7 +45,7 @@
                             <label for="type">نوع کوپن</label>
                             <select id="type" name="type" class="form-control">
                                 <option value="amount">مبلغی</option>
-                                <option value="percentage">در صدی</option>
+                                <option value="percentage">درصدی</option>
                             </select>
                         </div>
 
@@ -87,7 +87,7 @@
 
                     </div>
                     <button type="submit" class="btn btn-outline-primary mt-5 px-4">ثبت</button>
-                    <a href="{{route('admin.attributes.index')}}" class="btn btn-secondary mt-5 mx-md-2">بازگشت</a>
+                    <a href="{{route('admin.coupons.index')}}" class="btn btn-secondary mt-5 mx-md-2">بازگشت</a>
                 </form>
             </div>
         </div>

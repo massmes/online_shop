@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 
 @section('title')
-    لیست ویژگی ها
+    لیست کوپن ها
 @endsection
 
 @section('script')
@@ -22,12 +22,12 @@
 
         <div class="col-xl-12 col-md-12 mb-4 p-5 bg-white">
             <div class="d-flex flex-column text-center flex-md-row justify-content-md-between mb-4">
-                <h5 class="font-weight-bold mb-4">لیست ویژگی ها ({{ $attributes->total() }})</h5>
+                <h5 class="font-weight-bold mb-4">لیست کوپن ها ({{ $coupons->total() }})</h5>
                 <div>
-                    <a class="btn btn-sm btn-outline-primary" href="{{ route('admin.attributes.create') }}"
-                       title="ایجاد ویژگی">
+                    <a class="btn btn-sm btn-outline-primary" href="{{ route('admin.coupons.create') }}"
+                       title="ایجاد کوپن">
                         <i class="fa fa-plus"></i>
-                        ایجاد ویژگی
+                        ایجاد کوپن
                     </a>
                 </div>
 
@@ -38,36 +38,57 @@
                 <thead>
                 <tr>
                     <th>ردیف</th>
-                    <th>نام ویژگی</th>
+                    <th>نام کوپن</th>
+                    <th>کد کوپن</th>
+                    <th>نوع کوپن</th>
+                    <th>تاریخ انقضا کوپن</th>
                     <th>عملیات</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($attributes as $key => $attribute)
+                @foreach($coupons as $key => $coupon)
                     <tr>
                         <td>
-                            {{$attributes->firstItem() + $key}}
+                            {{$coupons->firstItem() + $key}}
                         </td>
                         <td>
-                            {{$attribute->name}}
+                            {{$coupon->name}}
                         </td>
+
+                        <td>
+                            {{$coupon->code}}
+                        </td>
+
+                        <td>
+                            @if($coupon->type == 'amount')
+                                مبلغی
+                            @elseif($coupon->type == 'percentage')
+                                درصدی
+                            @endif
+                        </td>
+
+                        <td>
+                            {{verta($coupon->expired_at)->format('Y/m/d H-i-s')}}
+                        </td>
+
                         <td class="d-flex justify-content-center">
-                            <a href="{{route('admin.attributes.show',['attribute'=>$attribute->id])}}"
+                            <a href="{{route('admin.coupons.show',['coupon'=>$coupon->id])}}"
                                class="btn btn-sm btn-outline-info mx-1"
-                               title=" نمایش ویژگی">
+                               title=" نمایش کوپن">
                                 <i class="fa fa-eye"></i>
                             </a>
-                            <a href="{{route('admin.attributes.edit',['attribute'=>$attribute->id])}}"
+                            <a href="{{route('admin.coupons.edit',['coupon'=>$coupon->id])}}"
                                class="btn btn-sm btn-outline-info mx-1"
-                               title="ویرایش ویژگی">
+                               title="ویرایش کوپن">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <form class="mx-1" action="{{ route('admin.attributes.destroy', ['attribute' => $attribute->id]) }}"
+                            <form class="mx-1" action="{{ route('admin.coupons.destroy', ['coupon' => $coupon->id]) }}"
                                   method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button onclick="return confirmDelete()" id="popup" type="submit" class="btn btn-sm btn-outline-danger"
-                                        title="حذف ویژگی">
+                                <button onclick="return confirmDelete()" id="popup" type="submit"
+                                        class="btn btn-sm btn-outline-danger"
+                                        title="حذف کوپن">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </form>
@@ -79,6 +100,6 @@
         </div>
     </div>
     <div class="my-5">
-        {{$attributes->links()}}
+        {{$coupons->links()}}
     </div>
 @endsection
