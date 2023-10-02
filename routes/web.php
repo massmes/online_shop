@@ -129,6 +129,9 @@ Route::prefix('profile')->name('home.')->group(function () {
     Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
     Route::put('/addresses/{address}', [AddressController::class, 'update'])->name('addresses.update');
 
+    Route::get('/orders', [CartController::class, 'usersProfileIndex'])->name('orders.users_profile.index');
+
+
 
 });
 
