@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductVariation;
+use App\Models\Province;
+use App\Models\UserAddress;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use Alert;
@@ -93,5 +95,38 @@ class CartController extends Controller
         return redirect()->back();
     }
 
+    public function checkCoupon(Request $request)
+    {
+        $request->validate([
+            'code' => 'required',
+        ]);
+
+        if (!auth()->check()) {
+            toastr()->error('برای استفاده از کد تخفیف نیاز به ورود و یا ثبت نام در سایت است', 'کاربر گرامی', ['timeOut' => 5000, 'iconClass' => 'toast-error', 'positionClass' => 'toast-top-center',]);
+            return redirect()->back();
+        }
+
+        $result = checkCoupon($request->code);
+
+        if (array_key_exists('error', $result)) {
+            toastr()->error($result['error'], 'کاربر گرامی', ['timeOut' => 5000, 'iconClass' => 'toast-error', 'positionClass' => 'toast-top-center',]);
+        } else {
+            toastr()->success($result['success'], 'کاربر گرامی', ['timeOut' => 5000, 'iconClass' => 'toast-success', 'positionClass' => 'toast-top-center',]);
+
+        }
+        return redirect()->back();
+    }
+
+    function checkout()
+    {
+        if (\Cart::isEmpty()) {
+            toastr()->warning('متاسفانه سبد خرید شما خالی میباشد', 'کاربر گرامی', ['timeOut' => 5000, 'iconClass' => 'toast-warning', 'positionClass' => 'toast-top-center',]);
+            return redirect()->route('home.index');
+        }
+
+        $addresses = UserAddress::where('user_id', auth()->id())->get();
+        $provinces = Province::all();
+        return view('home.cart.checkout', compact('provinces', 'addresses'));
+    }
 
 }

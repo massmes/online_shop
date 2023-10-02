@@ -10,17 +10,19 @@
         سفارشات
     </a>
 
-    <a href="#address" data-toggle="tab">
+    <a href="{{route('home.addresses.index')}}" class="{{request()->is('profile/addresses') ? 'active' : ''}}">
         <i class="sli sli-map ml-1"></i>
         آدرس ها
     </a>
 
-    <a href="{{route('home.wishlist.users_profile.index')}}" class="{{request()->is('profile/wishlist') ? 'active' : ''}}">
+    <a href="{{route('home.wishlist.users_profile.index')}}"
+       class="{{request()->is('profile/wishlist') ? 'active' : ''}}">
         <i class="sli sli-heart ml-1"></i>
         لیست علاقه مندی ها
     </a>
 
-    <a href="{{route('home.comments.users_profile.index')}}" class="{{request()->is('profile/comments') ? 'active' : ''}}">
+    <a href="{{route('home.comments.users_profile.index')}}"
+       class="{{request()->is('profile/comments') ? 'active' : ''}}">
         <i class="sli sli-bubble ml-1"></i>
         نظرات
     </a>

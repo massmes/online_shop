@@ -130,8 +130,9 @@
                                     </div>
                                     <div class="discount-code">
                                         <p> لورم ایپسوم متن ساختگی با تولید سادگی </p>
-                                        <form>
-                                            <input type="text" required="" name="name">
+                                        <form action="{{route('home.coupons.check')}}" method="post">
+                                            @csrf
+                                            <input type="text" required="" name="code">
                                             <button class="cart-btn-2" type="submit"> ثبت</button>
                                         </form>
                                     </div>
@@ -160,6 +161,17 @@
                                             </span>
                                         </h5>
                                     @endif
+
+                                    @if(session()->has('coupon'))
+                                        <hr>
+                                        <h5>
+                                            مبلغ کد تخفیف :
+                                            <span style="color: #ff3535">
+                                                {{number_format( session()->get('coupon.amount') )}}
+                                                تومان
+                                            </span>
+                                        </h5>
+                                    @endif
                                     <div class="total-shipping">
                                         <h5>
                                             هزینه ارسال :
@@ -180,11 +192,11 @@
                                     <h4 class="grand-totall-title">
                                         جمع کل:
                                         <span>
-                                            {{number_format(\Cart::getTotal() + cartTotalDeliveryAmount())}}
+                                            {{number_format( cartTotalAmount() )}}
                                             تومان
                                         </span>
                                     </h4>
-                                    <a href="#"> ادامه فرآیند خرید </a>
+                                    <a href="{{route('home.orders.checkout')}}"> ادامه فرآیند خرید </a>
                                 </div>
                             </div>
                         </div>
