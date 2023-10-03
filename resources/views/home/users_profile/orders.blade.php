@@ -107,12 +107,7 @@
                                         <table>
                                             <thead>
                                             <tr>
-                                                @if($order->orderItems->count() > 1 )
-                                                    <th> تصویر محصولات</th>
-                                                @else
-                                                    <th> تصویر محصول</th>
-                                                @endif
-
+                                                <th> تصویر محصول</th>
                                                 <th> نام محصول</th>
                                                 <th> فی</th>
                                                 <th> تعداد</th>

@@ -25,9 +25,59 @@ class Order extends Model
         return $status;
     }
 
+    public function getPaymentTypeAttribute($paymentType)
+    {
+        switch ($paymentType) {
+            case 'pos' :
+                $paymentType = 'دستگاه کارت خوان';
+                break;
+            case 'cash' :
+                $paymentType = 'پرداخت نقدی';
+                break;
+            case 'shabaNumber0' :
+                $paymentType = 'پرداخت از طریق شماره شبا';
+                break;
+            case 'cardToCard' :
+                $paymentType = 'پرداخت از طریق کارت به کارت';
+                break;
+            case 'online' :
+                $paymentType = 'پرداخت اینترنتی';
+                break;
+        }
+        return $paymentType;
+    }
+
+    public function getPaymentStatusAttribute($paymentStatus)
+    {
+        switch ($paymentStatus) {
+            case '0' :
+                $paymentStatus = 'ناموفق';
+                break;
+            case '1' :
+                $paymentStatus = 'موفق';
+                break;
+        }
+        return $paymentStatus;
+    }
+
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function coupon()
+    {
+        return $this->belongsTo(Coupon::class);
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(UserAddress::class);
     }
 
 }

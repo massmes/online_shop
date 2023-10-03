@@ -11,6 +11,8 @@ use \App\Http\Controllers\Admin\BannerController;
 use \App\Http\Controllers\Admin\CommentController;
 use \App\Http\Controllers\Admin\UserController;
 use \App\Http\Controllers\Admin\CouponController;
+use \App\Http\Controllers\Admin\OrderController;
+use \App\Http\Controllers\Admin\TransactionController;
 use Ghasedak\Laravel\GhasedakFacade;
 
 
@@ -60,6 +62,8 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     Route::resource('comments', CommentController::class);
     Route::resource('users', UserController::class);
     Route::resource('coupons', CouponController::class);
+    Route::resource('orders', OrderController::class);
+    Route::resource('transactions', TransactionController::class);
 
     //for approved comments
     Route::get('/comments/{comment}/change-status', [CommentController::class, 'changeStatus'])->name('comments.change.status');

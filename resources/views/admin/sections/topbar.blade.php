@@ -130,10 +130,8 @@
                         </div>
                         <div class="small text-gray-500"> لورم ایپسوم</div>
                     </div>
-
                     <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src=#"
-                             alt="">
+                        <img class="rounded-circle" src="#" alt="#">
                         <div class="status-indicator bg-success"></div>
                     </div>
 
