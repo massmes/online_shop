@@ -459,7 +459,9 @@
                                             </div>
                                             <div class="pro-details-quality">
                                                 <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box quantity-input" type="text" name="qtybutton" value="1" data-max="{{$product->quantity_check->quantity}}" />
+                                                    <input class="cart-plus-minus-box quantity-input" type="text"
+                                                           name="qtybutton" value="1"
+                                                           data-max="{{$product->quantity_check->quantity}}"/>
                                                 </div>
                                                 <div class="pro-details-cart">
                                                     <button type="submit">افزودن به سبد خرید</button>
@@ -467,27 +469,31 @@
                                                 <div class="pro-details-wishlist">
                                                     @auth
                                                         @if ($product->checkUserWishlist(auth()->id()))
-                                                            <a href="{{ route('home.wishlist.remove' , ['product' => $product->id]) }}"><i class="fas fa-heart" style="color:red"></i>
+                                                            <a href="{{ route('home.wishlist.remove' , ['product' => $product->id]) }}"><i
+                                                                    class="fas fa-heart" style="color:red"></i>
                                                             </a>
                                                         @else
-                                                            <a href="{{ route('home.wishlist.add' , ['product' => $product->id]) }}"><i class="sli sli-heart"></i>
+                                                            <a href="{{ route('home.wishlist.add' , ['product' => $product->id]) }}"><i
+                                                                    class="sli sli-heart"></i>
                                                             </a>
                                                         @endif
 
                                                     @else
-                                                        <a href="{{ route('home.wishlist.add' , ['product' => $product->id]) }}"><i class="sli sli-heart"></i>
+                                                        <a href="{{ route('home.wishlist.add' , ['product' => $product->id]) }}"><i
+                                                                class="sli sli-heart"></i>
                                                         </a>
                                                     @endauth
                                                 </div>
                                                 <div class="pro-details-compare">
-                                                    <a title="Add To Compare" href="#"><i class="sli sli-refresh"></i></a>
+                                                    <a title="Add To Compare" href="#"><i
+                                                            class="sli sli-refresh"></i></a>
                                                 </div>
                                             </div>
                                         @else
                                             <div class="not-in-stock">
                                                 <p class="text-white">ناموجود</p>
                                             </div>
-                                            @endif
+                                        @endif
                                     </form>
 
 

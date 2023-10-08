@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Webprog.ir - @yield('title')</title>
+    <title>Sepanta.com - @yield('title')</title>
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('/css/admin/admin.css') }}" rel="stylesheet">
