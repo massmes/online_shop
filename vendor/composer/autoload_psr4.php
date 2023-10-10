@@ -11,6 +11,7 @@ return array(
     'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Wavey\\Sweetalert\\' => array($vendorDir . '/wavey/sweetalert/src'),
+    'TimeHunter\\LaravelGoogleReCaptchaV3\\' => array($vendorDir . '/timehunter/laravel-google-recaptcha-v3/src'),
     'TijsVerkoyen\\CssToInlineStyles\\' => array($vendorDir . '/tijsverkoyen/css-to-inline-styles/src'),
     'Tests\\' => array($baseDir . '/tests'),
     'Termwind\\' => array($vendorDir . '/nunomaduro/termwind/src'),

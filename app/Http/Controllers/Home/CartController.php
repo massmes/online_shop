@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use App\Models\Province;
+use App\Models\User;
 use App\Models\UserAddress;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
@@ -120,14 +121,21 @@ class CartController extends Controller
 
     function checkout()
     {
-        if (\Cart::isEmpty()) {
-            toastr()->warning('متاسفانه سبد خرید شما خالی میباشد', 'کاربر گرامی', ['timeOut' => 5000, 'iconClass' => 'toast-warning', 'positionClass' => 'toast-top-center',]);
-            return redirect()->route('home.index');
-        }
+        if (!auth()->check()) {
+            toastr()->warning('برای ادامه فرایند خرید باید لاگین باشید', 'کاربر گرامی', ['timeOut' => 5000, 'iconClass' => 'toast-warning', 'positionClass' => 'toast-top-center',]);
 
-        $addresses = UserAddress::where('user_id', auth()->id())->get();
-        $provinces = Province::all();
-        return view('home.cart.checkout', compact('provinces', 'addresses'));
+            return redirect()->route('login');
+        } else {
+
+            if (\Cart::isEmpty()) {
+                toastr()->warning('متاسفانه سبد خرید شما خالی میباشد', 'کاربر گرامی', ['timeOut' => 5000, 'iconClass' => 'toast-warning', 'positionClass' => 'toast-top-center',]);
+                return redirect()->route('home.index');
+            }
+
+            $addresses = UserAddress::where('user_id', auth()->id())->get();
+            $provinces = Province::all();
+            return view('home.cart.checkout', compact('provinces', 'addresses'));
+        }
     }
 
     public function usersProfileIndex()

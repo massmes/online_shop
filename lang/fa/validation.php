@@ -240,9 +240,10 @@ return [
         'max_percentage_amount' => 'حداکثر مبلغ',
         'percentage' => 'درصدی',
         'title' => 'عنوان',
-        'address'=>'آدرس',
-        'city_id'=>'شهر',
-        'postal_code'=>'کد پستی',
+        'address' => 'آدرس',
+        'city_id' => 'شهر',
+        'postal_code' => 'کد پستی',
+        'subject' => 'موضوع',
 
 
     ],
